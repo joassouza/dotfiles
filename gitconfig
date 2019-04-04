@@ -1,0 +1,25 @@
+[user]
+	name = joassouza
+	email = joassouzasantos@gmail.com
+[alias]
+	st = status
+	br = branch
+	co = checkout
+	df = diff
+	dc = diff --cached
+    l  = log
+    ll = log  --pretty=oneline
+    c  = commit
+	dcs = diff --cached --diff-filter=ACM
+	po = push -u origin
+  sn = show --name-only
+[core]
+	editor = vim
+	excludesfile = /Users/joassouza/.gitignore_global
+[push]
+	default = simple
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
