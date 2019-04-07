@@ -30,13 +30,14 @@ Plug 'w0rp/ale'
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'takac/vim-hardtime'
 Plug 'easymotion/vim-easymotion'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 " }}}
 
 " Colors {{{
 syntax enable
-colorscheme base16-oceanicnext
+colorscheme base16-onedark
 set termguicolors
 " }}}
 
@@ -57,6 +58,9 @@ filetype indent on
 " }}}
 
 " Searching{{{
+
+" keep match on the center of screen
+nnoremap n nzz
 set incsearch " search as characters are entered
 set hlsearch " highlight all matches
 " }}}
@@ -104,6 +108,12 @@ nnoremap <leader>q :bd<CR>
 
 " copy content of SO buffer to register 'b'
 nnoremap <leader>r :let@b=@* <CR>
+
+" loop over error list
+nnoremap <leader>j :cnext <CR>
+nnoremap <leader>k :cprevious <CR>
+
+
 
 " }}}
 
