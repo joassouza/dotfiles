@@ -298,8 +298,8 @@ let g:localvimrc_whitelist=[
 " }}}
 
 " GitGutter {{{
-nmap <leader>c <Plug>GitGutterNextHunk
-nmap <leader>v <Plug>GitGutterPrevHunk
+nmap <leader>c <Plug>GitGutterNextHunk zz
+nmap <leader>v <Plug>GitGutterPrevHunk zz
 " }}}
 
 " Ale {{{
