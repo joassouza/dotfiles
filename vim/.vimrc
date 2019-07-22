@@ -186,6 +186,9 @@ set showcmd
 set cursorline
 set wildmenu
 set showmatch
+
+" keep the highlight on the line where it was triggered
+nmap gd gd``
 " }}}
 
 " Plugins - settings{{{
