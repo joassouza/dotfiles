@@ -5,7 +5,6 @@ call plug#begin('~/.vim/plugged')
 Plug '/usr/local/opt/fzf'
 Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 Plug 'chriskempson/base16-vim'
 Plug 'christoomey/vim-sort-motion'
@@ -26,7 +25,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-ragtag'
 Plug 'tpope/vim-surround'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale', { 'commit': 'd837169f1d10f0fee605cc17564c68563db94601' }
 Plug 'yuttie/comfortable-motion.vim'
 call plug#end()
 
@@ -34,7 +33,7 @@ call plug#end()
 
 " Colors {{{
 syntax enable
-colorscheme base16-solarflare
+colorscheme base16-ia-dark
 set termguicolors
 " }}}
 
@@ -98,6 +97,10 @@ nnoremap <leader>r :bprevious<CR>
 
 " close current buffer
 nnoremap <leader>q :bd<CR>
+
+" moving around quickfix list
+nnoremap <leader>j :cnext<CR>
+nnoremap <leader>k :cprevious<CR>
 
 " }}}
 
@@ -254,9 +257,9 @@ set undodir=~/.vim/undo
 " YouCompleteMe {{{
 
 " Start autocompletion after 4 chars
-let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_min_num_of_chars_for_completion = 5
 let g:ycm_min_num_identifier_candidate_chars = 4
-let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_enable_diagnostic_highlighting = 1
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
 " Don't show YCM's preview window [ I find it really annoying ]
 set completeopt-=preview

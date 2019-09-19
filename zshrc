@@ -4,6 +4,11 @@
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/joassouza/.oh-my-zsh"
 
+# useful for dvm
+[ -f /usr/local/opt/dvm/dvm.sh ] && . /usr/local/opt/dvm/dvm.sh
+# set compose tls version
+# export COMPOSE_TLS_VERSION="TLSv1_2"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
