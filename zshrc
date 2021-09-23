@@ -2,18 +2,23 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/joassouza/.oh-my-zsh"
+export ZSH="/Users/joas/.oh-my-zsh"
+export EDITOR=nvim
+export VIMINIT='source $MYVIMRC'
 
-# useful for dvm
-[ -f /usr/local/opt/dvm/dvm.sh ] && . /usr/local/opt/dvm/dvm.sh
-# set compose tls version
-# export COMPOSE_TLS_VERSION="TLSv1_2"
+# vim config
+# export MYVIMRC="/Users/joas/.vim/.vimrc"
 
+# neovim config
+export MYVIMRC="~/.config/nvim/init.vim"
+export TERM=xterm-256color
+export LC_ALL=en_US.UTF-8
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -30,8 +35,15 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -66,13 +78,16 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git
-  vi-mode
-  tmux
-  osx
-  docker-compose
-)
+plugins=(git
+vi-mode
+tmux
+docker
+docker-compose
+docker-machine
+osx
+fzf
+zsh-iterm-touchbar
+ )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -81,7 +96,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LANG=en_US.UTF-8
+# export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -93,9 +108,6 @@ export LANG=en_US.UTF-8
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -104,40 +116,38 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-export MYVIMRC='~/.vim/.vimrc'
-export TERM="xterm-256color"
-alias tmux='tmux -2'
-alias gti="git"
-alias gll="git log --graph --oneline --abbrev-commit --decorate --all"
-# cd to Etherpad plugins folder
-alias cdpl="cd ~ && cd etherpad-docker/etherpad-src/etherpad-lite/node_modules/"
-alias fd=fd
-alias vimf=find_current_file
+alias cdpl="cd ~/Work/o2 && cd etherpad-docker/etherpad-src/etherpad-lite/node_modules/"
 # init etherpad
-alias iet="cd ~ && cd etherpad-docker && ./bin/start_local_environment.sh"
-alias iweb="cd ~ && cd web && ./scripts/start_local.sh"
-alias ieis="cd ~ && cd export-import-service && ./scripts/start_local.sh"
-alias v="vim ."
+alias o2="cd ~/Work/o2"
+alias work="cd ~/Work/"
+alias iet="cd ~/Work/o2 && cd etherpad-docker && ./bin/start_local_environment.sh"
+alias iweb="cd ~/Work/o2 && cd web && ./scripts/start_local.sh"
+alias ieis="cd ~/Work/o2  && cd export-import-service && ./scripts/start_local.sh"
+alias v="nvim ."
+alias vim="nvim"
+alias vi="nvim"
+alias oldvim="vim"
+alias dlt="docker-compose logs -f --tail=100"
+alias mix-download="youtube-dlc -x --audio-format mp3 --embed-thumbnail  --audio-quality 0"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 
-find_current_file() {
-  vim $(fzf)
-}
-# bash on dev container
-# alias dwebpack="cd ~ && cd web && eval $(docker-machine env dev) && docker-compose exec webpack_dev bash"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="/usr/local/opt/mongodb-community@3.2/bin:$PATH"
+ctags=/usr/local/bin/ctags
+export PATH="/usr/local/opt/mongodb-community@4.0/bin:$PATH"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Show current git branch in command line
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="/usr/local/opt/postgresql@11/bin:$PATH"
 
-# fd - cd to selected directory
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/joas/Desktop/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/joas/Desktop/google-cloud-sdk/path.zsh.inc'; fi
 
-
-
-bindkey -r "^L"
-bindkey "^U" clear-screen
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/joas/Desktop/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/joas/Desktop/google-cloud-sdk/completion.zsh.inc'; fi
